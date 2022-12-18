@@ -8,7 +8,7 @@
       "skipQuickstart": false,
       "initGit": true,
       "usePrefix": true,
-      "appName": "angular14",
+      "appName": "AngularIdentityServer",
       "target": ["web"],
       "ui": "bootstrap",
       "features": ["pwa", "auth", "lazy", "cypress", "angulartics"],

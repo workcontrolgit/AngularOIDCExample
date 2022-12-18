@@ -1,4 +1,4 @@
-# angular14
+# AngularIdentityServer
 
 Welcome to the project documentation!
 
