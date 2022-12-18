@@ -30,11 +30,14 @@
               <i class="fas fa-user-circle"></i>
             </a>
             <div ngbDropdownMenu aria-labelledby="user-dropdown">
-              <h6 class="dropdown-header">
+              <h6 class="dropdown-header" *ngIf="(isAuthenticated | async) === true">
                 <span translate>Logged in as</span> <b>{{ username }}</b>
               </h6>
               <div class="dropdown-divider"></div>
-              <button class="dropdown-item" (click)="logout()" translate>Logout</button>
+              <button class="dropdown-item" (click)="logout()" translate *ngIf="(isAuthenticated | async) === true">
+                Logout
+              </button>
+              <button class="dropdown-item" (click)="login()" *ngIf="(isAuthenticated | async) === false">Login</button>
             </div>
           </div>
         </div>

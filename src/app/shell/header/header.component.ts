@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthenticationService, CredentialsService } from '@app/auth';
-
+import { Observable } from 'rxjs';
+import { AuthService } from '@app/core/auth/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,12 +10,11 @@ import { AuthenticationService, CredentialsService } from '@app/auth';
 })
 export class HeaderComponent implements OnInit {
   menuHidden = true;
+  isAuthenticated: Observable<boolean>;
 
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService,
-    private credentialsService: CredentialsService
-  ) {}
+  constructor(private authService: AuthService, private router: Router) {
+    this.isAuthenticated = authService.isAuthenticated$;
+  }
 
   ngOnInit() {}
 
@@ -23,12 +22,15 @@ export class HeaderComponent implements OnInit {
     this.menuHidden = !this.menuHidden;
   }
 
+  login() {
+    this.authService.login();
+  }
+
   logout() {
-    this.authenticationService.logout().subscribe(() => this.router.navigate(['/login'], { replaceUrl: true }));
+    this.authService.logout();
   }
 
   get username(): string | null {
-    const credentials = this.credentialsService.credentials;
-    return credentials ? credentials.username : null;
+    return this.authService.identityClaims ? (this.authService.identityClaims as any)['preferred_username'] : null;
   }
 }
