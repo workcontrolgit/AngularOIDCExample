@@ -14,8 +14,6 @@ import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-//import { OAuthModule } from 'angular-oauth2-oidc';
-
 import { CoreModule } from '@app/core';
 
 @NgModule({
@@ -24,7 +22,6 @@ import { CoreModule } from '@app/core';
     ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
     HttpClientModule,
-    //OAuthModule.forRoot(),
     RouterModule,
     TranslateModule.forRoot(),
     NgbModule,
