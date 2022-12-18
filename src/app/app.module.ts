@@ -10,11 +10,14 @@ import { Angulartics2Module } from 'angulartics2';
 
 import { environment } from '@env/environment';
 import { RouteReusableStrategy, ApiPrefixInterceptor, ErrorHandlerInterceptor, SharedModule } from '@shared';
-import { AuthModule } from '@app/auth';
 import { HomeModule } from './home/home.module';
 import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+
+import { OAuthModule } from 'angular-oauth2-oidc';
+
+import { CoreModule } from '@app/core';
 
 @NgModule({
   imports: [
@@ -22,13 +25,14 @@ import { AppRoutingModule } from './app-routing.module';
     ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
     HttpClientModule,
+    OAuthModule.forRoot(),
     RouterModule,
     TranslateModule.forRoot(),
     NgbModule,
+    CoreModule.forRoot(),
     SharedModule,
     ShellModule,
     HomeModule,
-    AuthModule,
     Angulartics2Module.forRoot(),
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],

@@ -16,6 +16,23 @@ export const environment = {
   serverUrl: '/api',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
+  Api_Endpoint: 'https://localhost:44378/api/v1',
+  Api_Mock_Endpoint: 'https://localhost:44378/api/v1',
+  //Oidc_Issuer: 'https://localhost:44310', //this is for IdentityServer4 Admin UI running on localhost https://github.com/workcontrolgit/TokenProject.AdminUI
+  Oidc_Issuer: 'https://cat-token-identity.azurewebsites.net', //demo identityserver4 in Azure
+  Oidc_ClientId: 'AngularStarterKit', // client id setup in IdentityServer4
+  Oidc_responseType: 'code', //code flow PKCE, https://github.com/workcontrolgit/TokenProject.AdminUI
+  Oidc_redirectUri: window.location.origin + '/auth-callback',
+  Oidc_postLogoutRedirectUri: window.location.origin,
+  Oidc_silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
+  Oidc_scope: 'openid profile email roles app.api.employeeprofile.read', // Ask offline_access to support refresh token refreshes
+  Oidc_useSilentRefresh: true, // Needed for Code Flow to suggest using iframe-based refreshes
+  Oidc_silentRefreshTimeout: 50000, // For faster testing
+  Oidc_timeoutFactor: 0.25, // For faster testing
+  Oidc_sessionChecksEnabled: true,
+  Oidc_showDebugInformation: true, // Also requires enabling "Verbose" level in devtools
+  Oidc_clearHashAfterLogin: false, // https://github.com/manfredsteyer/angular-oauth2-oidc/issues/457#issuecomment-431807040,
+  Oidc_nonceStateSeparator: 'semicolon', // Real semicolon gets mangled by IdentityServer's URI encoding
 };
 
 /*
