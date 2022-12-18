@@ -3,15 +3,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { OAuthErrorEvent, OAuthService } from 'angular-oauth2-oidc';
-import { BehaviorSubject, combineLatest, Observable, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   private isAuthenticatedSubject$ = new BehaviorSubject<boolean>(false);
   public isAuthenticated$ = this.isAuthenticatedSubject$.asObservable();
 
-  private isDoneLoadingSubject$ = new ReplaySubject<boolean>();
+  private isDoneLoadingSubject$ = new BehaviorSubject<boolean>(false);
   public isDoneLoading$ = this.isDoneLoadingSubject$.asObservable();
 
   /**
@@ -64,6 +64,7 @@ export class AuthService {
     this.oauthService.events.subscribe((_) => {
       this.isAuthenticatedSubject$.next(this.oauthService.hasValidAccessToken());
     });
+    this.isAuthenticatedSubject$.next(this.oauthService.hasValidAccessToken());
 
     this.oauthService.events
       .pipe(filter((e) => ['token_received'].includes(e.type)))
@@ -95,7 +96,7 @@ export class AuthService {
         .loadDiscoveryDocument()
 
         // For demo purposes, we pretend the previous call was very slow
-        .then(() => new Promise<void>((resolve) => setTimeout(() => resolve(), 1000)))
+        .then(() => new Promise<void>((resolve) => setTimeout(() => resolve(), 1500)))
 
         // 1. HASH LOGIN:
         // Try to log in via hash fragment after redirect back

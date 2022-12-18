@@ -1,6 +1,6 @@
 {
-  "name": "angular14",
-  "short_name": "angular14",
+  "name": "AngularIdentityServer",
+  "short_name": "AngularIdentityServer",
   "theme_color": "#488aff",
   "background_color": "#488aff",
   "display": "standalone",

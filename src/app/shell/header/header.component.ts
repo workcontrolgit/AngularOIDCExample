@@ -31,6 +31,6 @@ export class HeaderComponent implements OnInit {
   }
 
   get username(): string | null {
-    return this.authService.identityClaims ? (this.authService.identityClaims as any)['preferred_username'] : null;
+    return this.authService.identityClaims ? (this.authService.identityClaims as any)['name'] : null;
   }
 }

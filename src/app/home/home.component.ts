@@ -14,5 +14,17 @@ export class HomeComponent implements OnInit {
 
   constructor(private quoteService: QuoteService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isLoading = true;
+    this.quoteService
+      .getRandomQuote({ category: 'dev' })
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe((quote: string) => {
+        this.quote = quote;
+      });
+  }
 }

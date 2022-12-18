@@ -1,19 +1,17 @@
 import { AuthConfig } from 'angular-oauth2-oidc';
-import { environment } from '@env/environment';
 
 export const authConfig: AuthConfig = {
-  issuer: environment.Oidc_Issuer,
-  clientId: environment.Oidc_ClientId,
-  responseType: environment.Oidc_responseType,
-  redirectUri: environment.Oidc_redirectUri,
-  postLogoutRedirectUri: environment.Oidc_postLogoutRedirectUri,
-  silentRefreshRedirectUri: environment.Oidc_silentRefreshRedirectUri,
-  scope: environment.Oidc_scope,
-  useSilentRefresh: environment.Oidc_useSilentRefresh,
-  silentRefreshTimeout: environment.Oidc_silentRefreshTimeout,
-  timeoutFactor: environment.Oidc_timeoutFactor,
-  sessionChecksEnabled: environment.Oidc_sessionChecksEnabled,
-  showDebugInformation: environment.Oidc_showDebugInformation,
-  clearHashAfterLogin: environment.Oidc_clearHashAfterLogin,
-  nonceStateSeparator: environment.Oidc_nonceStateSeparator,
+  issuer: 'https://demo.duendesoftware.com',
+  clientId: 'interactive.public', // The "Auth Code + PKCE" client
+  responseType: 'code',
+  redirectUri: window.location.origin + '/',
+  silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
+  scope: 'openid profile email api', // Ask offline_access to support refresh token refreshes
+  useSilentRefresh: true, // Needed for Code Flow to suggest using iframe-based refreshes
+  silentRefreshTimeout: 5000, // For faster testing
+  timeoutFactor: 0.25, // For faster testing
+  sessionChecksEnabled: true,
+  showDebugInformation: true, // Also requires enabling "Verbose" level in devtools
+  clearHashAfterLogin: false, // https://github.com/manfredsteyer/angular-oauth2-oidc/issues/457#issuecomment-431807040,
+  nonceStateSeparator: 'semicolon', // Real semicolon gets mangled by Duende ID Server's URI encoding
 };
