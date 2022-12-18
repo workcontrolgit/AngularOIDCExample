@@ -70,7 +70,7 @@
     "eslint-plugin-import": "latest",
     "eslint-plugin-jsdoc": "latest",
     "eslint-plugin-prefer-arrow": "latest",
-    "hads": "^3.0.3",
+    "hads": "^1.1.2",
     "https-proxy-agent": "^5.0.0",
     "husky": "^8.0.1",
     "jasmine-core": "~4.2.0",
