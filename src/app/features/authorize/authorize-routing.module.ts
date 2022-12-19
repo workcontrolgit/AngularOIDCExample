@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
-import { AboutComponent } from './about.component';
+import { AuthorizeComponent } from './authorize.component';
 import { AuthGuard } from '@app/core/auth/auth-guard.service';
 
 const routes: Routes = [
   // Module is lazy loaded, see app-routing.module.ts
   {
     path: '',
+    component: AuthorizeComponent,
     canActivate: [AuthGuard],
-    component: AboutComponent,
-    data: { title: marker('About') },
+    data: { title: marker('Authorize') },
   },
 ];
 
@@ -20,4 +20,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [],
 })
-export class AboutRoutingModule {}
+export class AuthorizeRoutingModule {}

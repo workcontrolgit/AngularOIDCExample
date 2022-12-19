@@ -13,28 +13,9 @@ import { env } from './.env';
 export const environment = {
   production: false,
   version: env['npm_package_version'] + '-dev',
-  serverUrl: '/api',
+  serverUrl: 'https://api.chucknorris.io',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
-  Api_Endpoint: 'https://localhost:44378/api/v1',
-  Api_Mock_Endpoint: 'https://localhost:44378/api/v1',
-
-  oidc: {
-    issuer: 'https://localhost:44310',
-    clientId: 'AngularStarterKit', // client id setup in IdentityServer4
-    responseType: 'code', //code flow PKCE
-    redirectUri: window.location.origin + '/auth-callback',
-    postLogoutRedirectUri: window.location.origin,
-    silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
-    scope: 'openid profile email roles app.api.employeeprofile.read', // Ask offline_access to support refresh token refreshes
-    useSilentRefresh: true, // Needed for Code Flow to suggest using iframe-based refreshes
-    silentRefreshTimeout: 50000, // For faster testing
-    timeoutFactor: 0.25, // For faster testing
-    sessionChecksEnabled: false,
-    showDebugInformation: false, // Also requires enabling "Verbose" level in devtools
-    clearHashAfterLogin: false, // https://github.com/manfredsteyer/angular-oauth2-oidc/issues/457#issuecomment-431807040,
-    nonceStateSeparator: 'semicolon', // Real semicolon gets mangled by IdentityServer's URI encoding
-  },
 };
 
 /*

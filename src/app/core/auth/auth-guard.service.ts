@@ -4,7 +4,10 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
-import { ToastService } from '@app/core/toast.service';
+import { ToastService } from '@app/core/toast/toast.service';
+import { Logger } from '@app/core';
+
+//const log = new Logger('auth-guard.service');
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -17,6 +20,8 @@ export class AuthGuard implements CanActivate {
         if (canActivateProtectedRoutes) {
           return true;
         }
+        //log.debug('Access denied', 'Please login to continue access');
+        console.log('Access denied', 'Please login to continue access');
         this.showToaster('Access denied', 'Please login to continue access');
         return false;
       })
@@ -25,7 +30,7 @@ export class AuthGuard implements CanActivate {
 
   // ngbmodal service
   showToaster(title: string, message: string) {
-    this.toastService.show(message, {
+    this.toastService.show(title, message, {
       classname: 'bg-danger text-light',
       delay: 2000,
       autohide: true,

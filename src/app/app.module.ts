@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { CoreModule } from '@app/core';
+import { ToastsContainer } from './core/toast/toasts-container.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { CoreModule } from '@app/core';
     SharedModule,
     ShellModule,
     HomeModule,
+    ToastsContainer,
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, Route } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
-import { ToastService } from '@app/core/toast.service';
+import { ToastService } from '@app/core/toast/toast.service';
 
 @Injectable()
 export class RoleGuard implements CanActivate {
@@ -40,7 +40,7 @@ export class RoleGuard implements CanActivate {
 
   // ngbmodal service
   showToaster(title: string, message: string) {
-    this.toastService.show(message, {
+    this.toastService.show(title, message, {
       classname: 'bg-danger text-light',
       delay: 2000,
       autohide: true,
