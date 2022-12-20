@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "build": "npm run write:env -s && ng build",
-    "start": "npm run write:env -s && ng serve --proxy-config proxy.conf.js",
+    "start": "npm run write:env -s && ng serve --proxy-config proxy.conf.js --host=127.0.0.1",
     "deploy": "npm run write:env -s && ng deploy",
     "serve:sw": "npm run build -s && npx http-server ./dist -p 4200",
     "lint": "ng lint && stylelint \"src/**/*.scss\"",
