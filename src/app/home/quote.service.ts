@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { environment } from '@env/environment';
 
 const routes = {
-  quote: (c: RandomQuoteContext) => `/jokes/random?category=${c.category}`,
+  quote: (c: RandomQuoteContext) => environment.serverUrl + `/jokes/random?category=${c.category}`,
 };
 
 export interface RandomQuoteContext {
